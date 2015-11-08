@@ -70,7 +70,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
-    redirect '/new' if check == false
+    redirect '/new' if !@check
     redirect '/show' if @game.check_win_or_lose == :play
     redirect '/lose' if @game.check_win_or_lose == :lose
     flash.discard

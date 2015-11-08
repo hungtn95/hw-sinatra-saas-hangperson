@@ -12,9 +12,10 @@ class HangpersonGame
     @word = word
     @guesses = ''
     @wrong_guesses = ''
+    @invalid = false
   end
   
-  attr_accessor(:word, :guesses, :wrong_guesses)
+  attr_accessor(:word, :guesses, :wrong_guesses, :invalid)
 
   def guess(guess_letter)
     raise ArgumentError.new() unless !guess_letter.nil? && /[A-Za-z]/.match(guess_letter)
@@ -22,8 +23,10 @@ class HangpersonGame
     return false if [@guesses, @wrong_guesses].include? guess_letter.downcase
     if @word.include? guess_letter.downcase
       @guesses += guess_letter
+      @invalid = false
     else 
       @wrong_guesses += guess_letter
+      @invalid = true
     end
     true
   end

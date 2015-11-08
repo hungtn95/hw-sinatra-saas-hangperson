@@ -70,7 +70,7 @@ class HangpersonApp < Sinatra::Base
   get '/win' do
     ### YOUR CODE HERE ###
     if params[:word] == nil
-      redirect '/new'
+      redirect '/show'
     end
     flash.discard
     erb :win # You may change/remove this line
@@ -79,7 +79,7 @@ class HangpersonApp < Sinatra::Base
   get '/lose' do
     ### YOUR CODE HERE ###
     if params[:word] == nil
-      redirect '/new'
+      redirect '/show'
     end
     flash.discard
     erb :lose # You may change/remove this line

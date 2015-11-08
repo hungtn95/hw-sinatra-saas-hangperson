@@ -19,10 +19,7 @@ class HangpersonGame
 
   def guess(guess_letter)
     unless guess_letter.is_a?(String) && !guess_letter.empty? && !(guess_letter =~ /[^a-zA-Z]/)
-      begin
-        raise ArgumentError.new("Guess argument invalid (cannot be nil, empty string or different of string type)")
-        return false
-      end
+      raise ArgumentError, 'Guess argument invalid (cannot be nil, empty string or different of string type)'
     end      
     return false if @guesses.include? guess_letter.downcase or @wrong_guesses.include? guess_letter.downcase
     if @word.include? guess_letter.downcase

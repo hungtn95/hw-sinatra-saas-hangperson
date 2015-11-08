@@ -6,7 +6,7 @@ class HangpersonApp < Sinatra::Base
 
   enable :sessions
   register Sinatra::Flash
-  
+
   before do
     @game = session[:game] || HangpersonGame.new('')
   end
@@ -22,6 +22,7 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
+    @check = false
     erb :new
   end
   
@@ -30,6 +31,7 @@ class HangpersonApp < Sinatra::Base
     word = params[:word] || HangpersonGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
 
+    @check = true
     @game = HangpersonGame.new(word)
     redirect '/show'
   end
@@ -41,7 +43,7 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
     begin
-      if @game.guess(letter) == false
+      if !@game.guess(letter)
         flash[:message] = "You have already used that letter."
       end
     rescue
@@ -67,6 +69,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
+    redirect '/new' if check == false
     redirect '/show' if @game.check_win_or_lose == :play
     redirect '/lose' if @game.check_win_or_lose == :lose
     flash.discard
@@ -75,6 +78,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
+    redirect '/new' if !@check
     redirect '/show' if @game.check_win_or_lose == :play
     redirect '/win' if @game.check_win_or_lose == :win
     flash.discard

@@ -69,7 +69,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
-    if params[:word] == nil
+    if params[:guess] == nil
       redirect '/show'
     end
     flash.discard
@@ -78,7 +78,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    if params[:word] == nil
+    if params[:guess] == nil
       redirect '/show'
     end
     flash.discard

@@ -67,9 +67,6 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
-    if params[:word] == nil
-      redirect '/new'
-    end
     if params[:guess] == nil
       redirect '/show'
     end
@@ -79,9 +76,6 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    if params[:word] == nil
-      redirect '/new'
-    end
     if params[:guess] == nil
       redirect '/show'
     end

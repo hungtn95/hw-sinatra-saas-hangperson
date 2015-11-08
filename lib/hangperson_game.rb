@@ -20,7 +20,7 @@ class HangpersonGame
   def guess(guess_letter)
     raise ArgumentError.new() unless !guess_letter.nil? && /[A-Za-z]/.match(guess_letter)
       
-    return false if [@guesses, @wrong_guesses].include? guess_letter.downcase
+    return false if @guesses.include? guess_letter.downcase or @wrong_guesses.include? guess_letter.downcase
     if @word.include? guess_letter.downcase
       @guesses += guess_letter
       @invalid = false

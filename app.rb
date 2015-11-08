@@ -68,6 +68,7 @@ class HangpersonApp < Sinatra::Base
   get '/win' do
     ### YOUR CODE HERE ###
     redirect '/show' if @game.check_win_or_lose == :play
+    redirect '/lose' if @game.check_win_or_lose == :lose
     flash.discard
     erb :win # You may change/remove this line
   end
@@ -75,6 +76,7 @@ class HangpersonApp < Sinatra::Base
   get '/lose' do
     ### YOUR CODE HERE ###
     redirect '/show' if @game.check_win_or_lose == :play
+    redirect '/win' if @game.check_win_or_lose == :win
     flash.discard
     erb :lose # You may change/remove this line
   end

@@ -9,7 +9,6 @@ class HangpersonApp < Sinatra::Base
 
   before do
     @game = session[:game] || HangpersonGame.new('')
-    @check = true
   end
   
   after do
@@ -23,7 +22,6 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
-    @check = false
     erb :new
   end
   
@@ -69,7 +67,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
-    redirect '/new' if !@check
+    redirect '/new' if  @game.nil?
     redirect '/show' if @game.check_win_or_lose == :play
     redirect '/lose' if @game.check_win_or_lose == :lose
     flash.discard
@@ -78,7 +76,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    redirect '/new' if !@check
+    redirect '/new' if @game.nil?
     redirect '/show' if @game.check_win_or_lose == :play
     redirect '/win' if @game.check_win_or_lose == :win
     flash.discard

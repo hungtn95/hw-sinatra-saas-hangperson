@@ -69,14 +69,12 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
     flash.discard
     erb :win # You may change/remove this line
-    redirect '/show'
   end
   
   get '/lose' do
     ### YOUR CODE HERE ###
     flash.discard
     erb :lose # You may change/remove this line
-    redirect '/show'
   end
   
 end

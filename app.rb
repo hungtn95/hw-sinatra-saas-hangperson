@@ -9,7 +9,6 @@ class HangpersonApp < Sinatra::Base
 
   before do
     @game = session[:game] || HangpersonGame.new('')
-    @check = false
   end
   
   after do
@@ -60,6 +59,7 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
+    @check = true
     if @game.check_win_or_lose == :lose
       redirect '/lose'
     elsif @game.check_win_or_lose == :win

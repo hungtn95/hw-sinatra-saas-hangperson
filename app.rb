@@ -57,18 +57,19 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    if request.path_info == '/show'
     if @game.check_win_or_lose == :lose
       redirect '/lose'
     elsif @game.check_win_or_lose == :win
       redirect '/win'
-    end
     end
     erb :show # You may change/remove this line
   end
   
   get '/win' do
     ### YOUR CODE HERE ###
+    if params[:word] == nil
+      redirect '/new'
+    end
     if params[:guess] == nil
       redirect '/show'
     end
@@ -78,6 +79,9 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
+    if params[:word] == nil
+      redirect '/new'
+    end
     if params[:guess] == nil
       redirect '/show'
     end

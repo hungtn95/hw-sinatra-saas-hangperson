@@ -59,10 +59,10 @@ class HangpersonApp < Sinatra::Base
       erb :show # You may change/remove this line
     elsif @game.check_win_or_lose == :win
       redirect '/win'
-      flash.discard 
+      flash.sweep 
     else
       redirect '/lose'
-      flash.discard 
+      flash.sweep 
     end
   end
   
